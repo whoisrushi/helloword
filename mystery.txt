@@ -1,0 +1,33 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+struct Student {
+    int id;
+    char name[20];
+    float cgpa;
+};
+
+int main() {
+    Student s[5] = {{1,"Asha",8.1},{2,"Riya",9.0},{3,"Kiran",7.5},{4,"Meena",8.5},{5,"Tina",7.9}};
+
+    // Bubble Sort by Name
+    for (int i = 0; i < 5; i++)
+        for (int j = i + 1; j < 5; j++)
+            if (strcmp(s[i].name, s[j].name) > 0)
+                swap(s[i], s[j]);
+
+    cout << "\nSorted by Name:\n";
+    for (auto &st : s) cout << st.name << " " << st.cgpa << endl;
+
+    // Selection Sort by CGPA (Descending)
+    for (int i = 0; i < 4; i++) {
+        int max = i;
+        for (int j = i + 1; j < 5; j++)
+            if (s[j].cgpa > s[max].cgpa) max = j;
+        swap(s[i], s[max]);
+    }
+
+    cout << "\nSorted by CGPA (Desc):\n";
+    for (auto &st : s) cout << st.name << " " << st.cgpa << endl;
+}
